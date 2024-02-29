@@ -29,8 +29,8 @@ class Level(models.Model):
         LEVEL2 = "1b", _("1Б")
         LEVEL3 = "2a", _("2А")
         LEVEL4 = "2b", _("2Б")
-        # LEVEL5 = "3a", _("3А")
-        # LEVEL6 = "3b", _("3Б")
+        LEVEL5 = "3a", _("3А")
+        LEVEL6 = "3b", _("3Б")
 
     winter = models.CharField(max_length=6, choices=LevelChoice.choices, default=LevelChoice.LEVEL1, null=True, blank=True, verbose_name='Зима')
     summer = models.CharField(max_length=6, choices=LevelChoice.choices, default=LevelChoice.LEVEL1, null=True, blank=True, verbose_name='Лето')
@@ -56,7 +56,7 @@ class Mounts(models.Model):
     add_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Turist, on_delete=models.CASCADE, default=None, verbose_name='Турист')
     coord = models.OneToOneField(Coords, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Координаты')
-    status = models.CharField(max_length=2, choices=Status.choices, default=Status.labels[0], verbose_name='Статус')
+    status = models.CharField(max_length=2, choices=Status.choices, default="NW", verbose_name='Статус')
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Уровень сложности')
 
     def __str__(self):

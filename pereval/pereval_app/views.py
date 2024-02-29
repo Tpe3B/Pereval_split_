@@ -25,32 +25,32 @@ class MountsViewSet(viewsets.ModelViewSet):
     serializer_class = MountsSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
-    def create(self, request, *args, **kwargs):
-        serializer = MountsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(
-                {
-                    'status': status.HTTP_200_OK,
-                    'message': 'Успешно!',
-                    'id': serializer.data['id'],
-                }
-            )
-
-        if status.HTTP_400_BAD_REQUEST:
-            return Response(
-                {
-                    'status': status.HTTP_400_BAD_REQUEST,
-                    'message': 'Некорректный запрос серверу',
-                    'id': None,
-                }
-            )
-
-        if status.HTTP_500_INTERNAL_SERVER_ERROR:
-            return Response(
-                {
-                    'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    'message': 'Ошибка сервера',
-                    'id': None,
-                }
-            )
+    # def create(self, request, *args, **kwargs):
+    #     serializer = MountsSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(
+    #             {
+    #                 'status': status.HTTP_200_OK,
+    #                 'message': 'Успешно!',
+    #                 'id': serializer.data['id'],
+    #             }
+    #         )
+    #
+    #     if status.HTTP_400_BAD_REQUEST:
+    #         return Response(
+    #             {
+    #                 'status': status.HTTP_400_BAD_REQUEST,
+    #                 'message': 'Некорректный запрос серверу',
+    #                 'id': None,
+    #             }
+    #         )
+    #
+    #     if status.HTTP_500_INTERNAL_SERVER_ERROR:
+    #         return Response(
+    #             {
+    #                 'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #                 'message': 'Ошибка сервера',
+    #                 'id': None,
+    #             }
+    #         )
