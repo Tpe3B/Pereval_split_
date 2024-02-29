@@ -1,3 +1,5 @@
+import django_filters
+import django_filters.rest_framework
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
@@ -5,32 +7,24 @@ from .serializers import *
 from .models import *
 
 
-class MoUserViewSet(viewsets.ModelViewSet):
+class TuristViewSet(viewsets.ModelViewSet):
     queryset = Turist.objects.all()
     serializer_class = TuristSerializer
     filterset_fields = ['fam', 'name', 'otc', 'email']
-
-
 class CoordsViewSet(viewsets.ModelViewSet):
     queryset = Coords.objects.all()
     serializer_class = CoordsSerializer
-
-
 class LevelViewSet(viewsets.ModelViewSet):
     queryset = Level.objects.all()
     serializer_class = LevelSerializer
-
-
 class ImagesViewSet(viewsets.ModelViewSet):
     queryset = Images.objects.all()
     serializer_class = ImagesSerializer
-
-
-class MountpassViewSet(viewsets.ModelViewSet):
+class MountsViewSet(viewsets.ModelViewSet):
     queryset = Mounts.objects.all()
     serializer_class = MountsSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
-    # Создаем перевал
     def create(self, request, *args, **kwargs):
         serializer = MountsSerializer(data=request.data)
         if serializer.is_valid():

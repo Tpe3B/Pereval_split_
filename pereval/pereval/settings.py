@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'rest_framework',
     'pereval_app',
+    'drf_yasg',
+    #'django-filters',
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'pereval.urls'
