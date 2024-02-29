@@ -29,8 +29,8 @@ class Level(models.Model):
         LEVEL2 = "1b", _("1Б")
         LEVEL3 = "2a", _("2А")
         LEVEL4 = "2b", _("2Б")
-        # LEVEL5 = "3a", _("3А")
-        # LEVEL6 = "3b", _("3Б")
+        LEVEL5 = "3a", _("3А")
+        LEVEL6 = "3b", _("3Б")
 
     winter = models.CharField(max_length=6, choices=LevelChoice.choices, default=LevelChoice.LEVEL1, null=True, blank=True, verbose_name='Зима')
     summer = models.CharField(max_length=6, choices=LevelChoice.choices, default=LevelChoice.LEVEL1, null=True, blank=True, verbose_name='Лето')
