@@ -1,35 +1,5 @@
 from django.db import models
-from pip._internal.utils._jaraco_text import _
-
-'''
-{
-    "beauty_title": "пер. ",
-    "title": "Пхия",
-    "other_titles": "Триев",
-    "connect": "", // что
-соединяет, текстовое
-поле
-"add_time": "2021-09-22 13:18:13",
-"user": {"email": "qwerty@mail.ru",
-         "fam": "Пупкин",
-         "name": "Василий",
-         "otc": "Иванович",
-         "phone": "+7 555 55 55"},
-"coords": {
-    "latitude": "45.3842",
-    "longitude": "7.1525",
-    "height": "1200"}
-level: {"winter": "", // Категория трудности.В
-разное время года перевал может
-иметь разную категорию трудности
-"summer": "1А",
-"autumn": "1А",
-"spring": ""},
-images: [{data: "<картинка1>", title: "Седловина"}, {data: "<картинка>", title: "Подъём"}]
-}
-'''
-
-
+from django.utils.translation import gettext_lazy as _
 
 '''Пользователи которые передают информацию'''
 class Turist(models.Model):
@@ -37,7 +7,7 @@ class Turist(models.Model):
     fam = models.CharField(max_length=100, verbose_name='Фамилия')
     name = models.CharField(max_length=100, verbose_name='Имя')
     otc = models.CharField(max_length=100, verbose_name='Отчество', blank=True, null=True)
-    phone = models.IntegerField(max_length=100, unique=True, verbose_name='Телефон')
+    phone = models.IntegerField(unique=True, verbose_name='Телефон')
 
     def __str__(self):
         return f'{self.fam} {self.name} {self.otc}'
