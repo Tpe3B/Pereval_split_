@@ -82,17 +82,22 @@ WSGI_APPLICATION = 'pereval.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'perevals',  #Имя БД
-        'USER': 'postgres', #Имя пользователя в БД
-        'PASSWORD': '07Drose1', #пароль БД
-        'HOST': 'localhost',
-        'PORT': '5433'
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+   }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'perevals',  #Имя БД
+#         'USER': 'postgres', #Имя пользователя в БД
+#         'PASSWORD': '07Drose1', #пароль БД
+#         'HOST': 'localhost',
+#         'PORT': '5433'
+#     }
+# }
 
 
 # Password validation
