@@ -5,6 +5,12 @@ from rest_framework.response import Response
 
 from .serializers import *
 from .models import *
+# from django.http import JsonResponse
+# from rest_framework import viewsets, status, generics
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+#
+# from .serializers import *
 
 
 class TuristViewSet(viewsets.ModelViewSet):
@@ -24,6 +30,9 @@ class MountsViewSet(viewsets.ModelViewSet):
     queryset = Mounts.objects.all()
     serializer_class = MountsSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+
+
+
 
     # def create(self, request, *args, **kwargs):
     #     serializer = MountsSerializer(data=request.data)
@@ -54,3 +63,30 @@ class MountsViewSet(viewsets.ModelViewSet):
     #                 'id': None,
     #             }
     #         )
+
+    def update(self, request, *args, **kwargs):
+        mount = self.get_object()
+        if mount.status == 'NW':
+            serializer = MountsSerializer(mount, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    {
+                        'state': '1',
+                        'message': 'Изменения в записи внесены'
+                    }
+                )
+            else:
+                return Response(
+                    {
+                        'state': '0',
+                        'message': serializer.errors
+                    }
+                )
+        else:
+            return Response(
+                {
+                    'state': '0',
+                    'message': f'Текущий статус: {mount.get_status_display()}, изменить запись нельзя!'
+                }
+            )
