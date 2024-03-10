@@ -2,15 +2,8 @@ import django_filters
 import django_filters.rest_framework
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
-
+from django.http import JsonResponse
 from .serializers import *
-from .models import *
-# from django.http import JsonResponse
-# from rest_framework import viewsets, status, generics
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
-#
-# from .serializers import *
 
 
 class TuristViewSet(viewsets.ModelViewSet):
@@ -30,7 +23,7 @@ class MountsViewSet(viewsets.ModelViewSet):
     queryset = Mounts.objects.all()
     serializer_class = MountsSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ('user__email',)
+    filterset_fields = ('user__email', 'id')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

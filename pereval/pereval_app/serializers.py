@@ -71,12 +71,13 @@ class ImagesSerializer(serializers.ModelSerializer):
 
 
 
-class MountsSerializer(WritableNestedModelSerializer):
+class MountsSerializer(serializers.HyperlinkedModelSerializer):
     add_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', read_only=True)
     user = TuristSerializer()
     coord = CoordsSerializer()
     level = LevelSerializer(allow_null=True)
     images = ImagesSerializer(many=True)
+    id = serializers.HyperlinkedIdentityField(view_name='mounts-detail')
 
     class Meta:
         model = Mounts
@@ -95,6 +96,8 @@ class MountsSerializer(WritableNestedModelSerializer):
         ]
         read_only_fields = ['status']
 
+
+    '''Запрет изменять данные'''
     def validate(self, value):
 
         user_data = value['user']
