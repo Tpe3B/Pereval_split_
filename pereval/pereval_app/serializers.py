@@ -71,7 +71,7 @@ class ImagesSerializer(serializers.ModelSerializer):
 
 
 
-class MountsSerializer(serializers.HyperlinkedModelSerializer):
+class MountsSerializer(WritableNestedModelSerializer):
     add_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', read_only=True)
     user = TuristSerializer()
     coord = CoordsSerializer()
