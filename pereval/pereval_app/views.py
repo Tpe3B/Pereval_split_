@@ -1,6 +1,6 @@
 import django_filters
 import django_filters.rest_framework
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 
 from .serializers import *
@@ -30,6 +30,10 @@ class MountsViewSet(viewsets.ModelViewSet):
     queryset = Mounts.objects.all()
     serializer_class = MountsSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ('user__email',)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 

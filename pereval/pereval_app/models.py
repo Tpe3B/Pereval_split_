@@ -3,11 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 '''Пользователи которые передают информацию'''
 class Turist(models.Model):
-    email = models.CharField(max_length=100, unique=True, verbose_name='почта')
+    email = models.CharField(max_length=100, verbose_name='почта')
     fam = models.CharField(max_length=100, verbose_name='Фамилия')
     name = models.CharField(max_length=100, verbose_name='Имя')
     otc = models.CharField(max_length=100, verbose_name='Отчество', blank=True, null=True)
-    phone = models.IntegerField(unique=True, verbose_name='Телефон')
+    phone = models.IntegerField(verbose_name='Телефон')
 
     def __str__(self):
         return f'{self.fam} {self.name} {self.otc}'
