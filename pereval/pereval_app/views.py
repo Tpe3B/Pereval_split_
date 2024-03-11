@@ -22,8 +22,10 @@ class ImagesViewSet(viewsets.ModelViewSet):
 class MountsViewSet(viewsets.ModelViewSet):
     queryset = Mounts.objects.all()
     serializer_class = MountsSerializer
+
+    '''Вывод всех данных которые отправил пользователь с одним и тем же email'''
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ('user__email', 'id')
+    filterset_fields = ('user__email', 'id') #Фильтр по email и id
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -60,10 +62,10 @@ class MountsViewSet(viewsets.ModelViewSet):
     #                 'id': None,
     #             }
     #         )
-
+    '''Возможность редактирования данных, которые вносит пользователь.'''
     def update(self, request, *args, **kwargs):
         mount = self.get_object()
-        if mount.status == 'NW':
+        if mount.status == 'NW':  #Редактирование возможно только при статусе NEW
             serializer = MountsSerializer(mount, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()

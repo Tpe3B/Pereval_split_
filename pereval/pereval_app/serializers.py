@@ -97,7 +97,7 @@ class MountsSerializer(WritableNestedModelSerializer):
         read_only_fields = ['status']
 
 
-    '''Запрет изменять данные'''
+    '''Данные которые запрещено изменять'''
     def validate(self, value):
 
         user_data = value['user']

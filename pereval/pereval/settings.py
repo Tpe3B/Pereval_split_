@@ -89,6 +89,8 @@ WSGI_APPLICATION = 'pereval.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 # }
+
+'''Подключение к БД'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
